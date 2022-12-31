@@ -1,0 +1,95 @@
+﻿<Page x:Class="Weather.Weath"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:uc="clr-namespace:Weather.UserControls"
+      xmlns:local="clr-namespace:Weather"
+      mc:Ignorable="d" 
+      d:DesignHeight="685" d:DesignWidth="995"
+      Title="Weath">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Left Side-->
+        <Border CornerRadius="30 0 0 30" Background="#FFFFFF">
+            <StackPanel>
+                <!--TextBox Search-->
+
+                <StackPanel Margin="50 60 0 0">
+                    <Image Source="/Images/sun_cloud.png" Width="140" HorizontalAlignment="Left" />
+                    <TextBlock Text="Текущая погода" FontSize="18" FontWeight="SemiBold" Margin="0 15 0 0"/>
+                    <TextBlock Name="current" Text="0°c" FontSize="46" Margin="0 20 0 0"/>
+                    <Separator Background="#dadada" Margin="3 30 40 30" Height="0.8"/>
+                    <StackPanel Orientation="Horizontal"/>
+                    <StackPanel Orientation="Horizontal" Margin="0 15 0 77"/>
+                </StackPanel>
+
+                <Border CornerRadius="15" Margin="30 0">
+                    <ComboBox x:Name="Selectedcity"
+                      Height="30"
+                      Width="150"
+                      Margin="5"
+                      SelectionChanged="Selectedcity_SelectionChanged"/>
+                </Border>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Name="Add" Content="Добавить город" Margin="5" Click="Add_Click" />
+                    <Button Name="Delete" Content="Удалить город" Margin="5" Click="Delete_Click"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+
+        <!--Right Side-->
+        <Border Grid.Column="1" CornerRadius="0 30 30 0" Background="#F6F6F6" >
+            <StackPanel>
+                <!--Top Menu-->
+                <Grid Margin="40 30 40 10">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Label Name="Week" Content="Неделя" Style="{StaticResource textButton}" MouseLeftButtonDown="Week_MouseLeftButtonDown"/>
+                        <Label Name="Month" Content="Месяц" Style="{StaticResource activeTextButton}" Margin="15 0 0 0" MouseLeftButtonDown="Month_MouseLeftButtonDown"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="X" Style="{StaticResource button}" Foreground="#FFFFFF" Background="#1A1A1A" Click="Button_Click"/>
+                    </StackPanel>
+                </Grid>
+
+                <!--Week Days-->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="40 20 0 20">
+                    <uc:CardDay x:Name="Min" Day="Мin" MaxNum="16°" MinNum="3°" Source="/Images/sun.png"/>
+                    <uc:CardDay x:Name="Max" Day="Max" MaxNum="15°" MinNum="6°" Source="/Images/sun_cloud.png"/>
+                    <uc:CardDay x:Name="Avg" Day="Avg" MaxNum="1°" MinNum="-10°" Source="/Images/snow.png"/>
+                </StackPanel>
+
+                <TextBlock Text="График изменения температуры" FontSize="16" FontWeight="SemiBold" Margin="40 10 0 10"/>
+
+                <!--Widget Section-->
+                <WrapPanel Margin="40 0 0 0">
+                    <!--Widget 1-->
+
+                    <!--Widget 2-->
+                    <Border Style="{StaticResource widgetBorder}" Height="396" Width="654">
+                        <Grid>
+                            <WpfPlot Name="WpfPlot1" />
+                        </Grid>
+                    </Border>
+
+                    <!--Widget 3-->
+
+                    <!--Widget 4-->
+
+                    <!--Widget 5-->
+
+                    <!--Widget 6-->
+
+                </WrapPanel>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

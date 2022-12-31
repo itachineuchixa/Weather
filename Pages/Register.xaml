@@ -1,0 +1,41 @@
+﻿<Page x:Class="Weather.Register"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Weather"
+      mc:Ignorable="d" 
+      d:DesignHeight="685" d:DesignWidth="995"
+      Title="Register">
+
+    <Grid>
+        <Grid>
+            <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                <Label  Content="Регистрация" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="5"/>
+                <TextBlock Text="Логин" Height="20" 
+                       HorizontalAlignment="Center"
+                       Margin="5"
+                           FontWeight="SemiBold"/>
+                <TextBox Name="TxbLogin" Height="30"
+                     Width="130" Margin="5" 
+                     Background="#FEFFB7 "
+                         FontWeight="SemiBold"/>
+                <TextBlock Text="Пароль" Height="20"
+                       Margin="5"
+                           FontWeight="SemiBold"
+                       HorizontalAlignment="Center"/>
+                <PasswordBox Name="PsbPassword" Height="30"
+                         Width="130" Margin="5" Background="#FEFFB7 "/>
+                <Button Content="Зарегистрироваться"
+                    Height="30"
+                    Width="130" Margin="5"
+                    Name="BtnAuth"
+                    FontWeight="SemiBold"
+                    Click="BtnAuth_Click"/>
+                <Label x:Name="Reg" Content="Вход" Style="{StaticResource activeTextButton}" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="5"  MouseLeftButtonDown="Reg_MouseLeftButtonDown"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
