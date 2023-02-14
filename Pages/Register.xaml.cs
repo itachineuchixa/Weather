@@ -30,7 +30,11 @@ namespace Weather
             string password = PsbPassword.Password.ToString();
             var response = await Auth(username, password);
             if (response.ToString() == "Success")
+            {
+                User.Password = password;
+                User.Username = username;
                 manager.MainFrame.Navigate(new Weath());
+            }    
             else { MessageBox.Show("Данный логин уже занят!"); };
         }
         static async Task<string> Auth(string username, string password)

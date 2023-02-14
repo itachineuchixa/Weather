@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
+using ScottPlot;
 
 namespace Weather
 {
@@ -138,13 +139,17 @@ namespace Weather
                         double a = av.Average();
                         Avg.MaxNum = Math.Round(a, 2).ToString() + "°c";
                         double[] dataY = av;
-                        double[] dataX = new double[av.Count()];
-                        for (int i = 0; i < av.Count(); i++)
-                        {
-                            dataX[i] = i;
-                        }
+                        double[] dataX = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 };
+                        /*                        for (int i = 0; i < av.Count(); i++)
+                                                {
+                                                    dataX[i] = i;
+                                                }*/
                         WpfPlot1.Plot.Clear();
-                        WpfPlot1.Plot.AddScatter(dataX, dataY);
+                        WpfPlot1.Plot.AddSignal(dataY, sampleRate: 30);
+                        WpfPlot1.Plot.SetAxisLimits(0, 30, -50, 50);
+                        WpfPlot1.Plot.Title("Weather");
+/*                       WpfPlot1.Plot.Clear();
+                        WpfPlot1.Plot.AddScatter(dataX, dataY);*/
                         WpfPlot1.Refresh();
 
                     }
@@ -175,7 +180,7 @@ namespace Weather
                         string[] avgs = avg.Replace(",", ";").Replace(".", ",").Split("[")[1].Split("]")[0].Split(";");
                         double[] av = new double[160];
                         n = 0;
-                        for (int i = avgs.Count()-159; i < avgs.Count(); i++)
+                        for (int i = avgs.Count()-160; i < avgs.Count(); i++)
                         {
                             av[n] = double.Parse(avgs[i]);
                             n++;
@@ -189,7 +194,9 @@ namespace Weather
                             dataX[i] = i;
                         }
                         WpfPlot1.Plot.Clear();
-                        WpfPlot1.Plot.AddScatter(dataX, dataY);
+                        WpfPlot1.Plot.AddSignal(dataY, sampleRate: 24);
+                        WpfPlot1.Plot.SetAxisLimits(0, 7, -50, 50);
+                        WpfPlot1.Plot.Title("Weather");
                         WpfPlot1.Refresh();
                     }
                 }
@@ -223,16 +230,16 @@ namespace Weather
 
         private void Week_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Week.Style = (Style)Application.Current.Resources["activeTextButton"];
-            Month.Style = (Style)Application.Current.Resources["textButton"];
+            Week.Style = (System.Windows.Style)Application.Current.Resources["activeTextButton"];
+            Month.Style = (System.Windows.Style)Application.Current.Resources["textButton"];
             Mode = "Week";
             set_data();
         }
 
         private void Month_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Month.Style = (Style)Application.Current.Resources["activeTextButton"];
-            Week.Style = (Style)Application.Current.Resources["textButton"];
+            Month.Style = (System.Windows.Style)Application.Current.Resources["activeTextButton"];
+            Week.Style = (System.Windows.Style)Application.Current.Resources["textButton"];
             Mode = "Month";
             set_data();
         }
